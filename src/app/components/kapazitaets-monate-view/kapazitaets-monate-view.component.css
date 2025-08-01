@@ -1,0 +1,92 @@
+.forecast-container {
+  max-width: 100vw;
+  overflow-x: auto;
+  padding: 1rem 0.5rem;
+}
+
+.forecast-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+  font-size: 1rem;
+  min-width: 1100px;
+}
+
+.forecast-table th, .forecast-table td {
+  border: 1px solid #e3e6ea;
+  padding: 0.33rem 0.64rem;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.forecast-table th.sticky-col, .forecast-table td.sticky-col {
+  background: #fafafa;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+.forecast-table th.left, .forecast-table td.left { left: 0; text-align: left; min-width: 140px; }
+
+.forecast-table th.months-header { text-align: center; font-weight: 500; background: #f3f4f6; }
+
+.forecast-table tr.abteilung-row td {
+  background: rgba(245,124,0,0.20);
+  color: #504141;
+  font-weight: bold;
+  font-size: 1.11rem;
+  text-align: left;
+  padding-top: 0.7em;
+  border-top: 2.5px solid #ff9800;
+}
+
+.forecast-table tr.zebra td {
+  background: #f7f9fb;
+}
+
+.forecast-table tr.sum-row td, .forecast-table tr.heads-row td {
+  background: #e3e7ef;
+  font-weight: bold;
+  color: #293a4a;
+  border-top: 1.5px solid #ced9e6;
+  font-size: 1em;
+}
+
+.forecast-table thead th {
+  background: #f3f4f6;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.forecast-table td, .forecast-table th {
+  min-width: 62px;
+  font-variant-numeric: tabular-nums;
+}
+
+.forecast-table td.left, .forecast-table th.left {
+  min-width: 150px;
+  text-align: left;
+}
+
+@media (max-width: 1200px) {
+  .forecast-table th, .forecast-table td { min-width: 47px; font-size: 0.92em; }
+  .forecast-table th.left, .forecast-table td.left { min-width: 100px; }
+}
+
+@media (max-width: 900px) {
+  .forecast-table th, .forecast-table td { min-width: 41px; font-size: 0.87em; }
+  .forecast-table th.left, .forecast-table td.left { min-width: 85px; }
+}
+
+.forecast-table td, .forecast-table th {
+  transition: background 0.16s;
+}
+
+/* Scrollbar etwas hübscher */
+.forecast-container::-webkit-scrollbar { height: 9px; }
+.forecast-container::-webkit-scrollbar-thumb {
+  background: #eee;
+  border-radius: 5px;
+}

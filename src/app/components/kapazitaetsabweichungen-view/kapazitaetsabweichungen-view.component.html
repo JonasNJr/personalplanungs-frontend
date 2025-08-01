@@ -1,0 +1,46 @@
+<div class="view-container">
+  <!-- 1. Filterzeile -->
+  <div class="filters">
+    <input type="text" placeholder="Name filtern…" [(ngModel)]="filterName" />
+    <select [(ngModel)]="filterAbteilung">
+      <option value="">Alle Abteilungen</option>
+      <option *ngFor="let abt of abteilungen" [value]="abt">{{ abt }}</option>
+    </select>
+    <input type="date" [(ngModel)]="filterStart" />
+    <input type="date" [(ngModel)]="filterEnd" />
+    <button (click)="onFilter()">Anwenden</button>
+    <button class="btn-add" (click)="addNew()">+ Neue Abweichung</button>
+  </div>
+
+  <!-- 2. Tabelle der Abweichungen -->
+  <table class="abweichungen-table">
+    <thead>
+      <tr>
+        <th>Mitarbeiter</th>
+        <th>Abteilung</th>
+        <th>Start</th>
+        <th>Ende</th>
+        <th>Neue Kap.</th>
+        <th>Bemerkung</th>
+        <th>Aktionen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of abweichungen">
+        <td>{{ a.mitarbeiterName }}</td>
+        <td>{{ a.abteilung }}</td>
+        <td>{{ a.startdatum | date:'dd.MM.yyyy' }}</td>
+        <td>{{ a.enddatum  | date:'dd.MM.yyyy' }}</td>
+        <td>{{ a.neueKapazitaet }}</td>
+        <td>{{ a.bemerkung || '-' }}</td>
+        <td class="actions-cell">
+          <button (click)="onEdit(a)">✎</button>
+          <button (click)="onDelete(a.id)">🗑</button>
+        </td>
+      </tr>
+      <tr *ngIf="abweichungen.length===0">
+        <td colspan="7" class="no-data">Keine Datensätze gefunden.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

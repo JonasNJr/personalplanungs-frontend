@@ -1,0 +1,16 @@
+<div class="card analytics-card" [class.placeholder-active]="!inhalt">
+  <ng-container [ngSwitch]="inhalt">
+
+    <app-kapazitaetsabweichungen-view *ngSwitchCase="'kapazitaet'"></app-kapazitaetsabweichungen-view>
+    <app-kapazitaets-monate-view      *ngSwitchCase="'monate'"></app-kapazitaets-monate-view>
+    <app-befristung-mitarbeiter-view *ngSwitchCase="'befristet'"></app-befristung-mitarbeiter-view>
+    <app-fluktuation-view *ngSwitchCase="'fluktuation'"></app-fluktuation-view>
+    <app-personalentwicklung-view *ngSwitchCase="'personalentwicklung'"></app-personalentwicklung-view>
+    <app-atz-mitarbeiter-view *ngSwitchCase="'atz'"></app-atz-mitarbeiter-view>
+    <app-austritte-mitarbeiter-view *ngSwitchCase="'austritte'"></app-austritte-mitarbeiter-view>
+    <div *ngSwitchDefault class="placeholder">
+      <img src="/STIHL_LogoType_RGB_V1-03.png" class="placeholder-image" />
+    </div>
+
+  </ng-container>
+</div>

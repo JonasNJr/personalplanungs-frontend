@@ -1,0 +1,27 @@
+/* src/app/components/austritte-mitarbeiter-view/austritte-mitarbeiter-view.component.css */
+.view-container { padding: 1rem; }
+.filters       { display: flex; gap:1rem; margin-bottom:1rem; }
+.mitarbeiter-table {
+  width:100%; border-collapse: collapse;
+}
+.mitarbeiter-table th,
+.mitarbeiter-table td {
+  border:1px solid #ddd; padding:0.5rem; text-align:left;
+}
+.actions-cell button { margin-right:0.5rem; }
+
+/* Falls nötig, nochmal die Modal-Styles */
+.modal-overlay {
+  position: fixed; inset:0;
+  background: rgba(0,0,0,0.4);
+  display:flex; align-items:center; justify-content:center;
+  z-index:1000;
+}
+.modal-content {
+  background:#fff; padding:1.5rem; border-radius:0.4rem;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15); width:90%; max-width:500px;
+}
+.modal-content .close-btn {
+  position:absolute; top:0.5rem; right:0.5rem;
+  background:transparent; border:none; font-size:1.25rem; cursor:pointer;
+}

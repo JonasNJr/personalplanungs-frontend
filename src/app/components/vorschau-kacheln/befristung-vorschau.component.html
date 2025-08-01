@@ -1,0 +1,16 @@
+<!-- src/app/components/vorschau-kacheln/befristung-vorschau.component.html -->
+<div class="card vorschau" (click)="$event.stopPropagation()">
+  <h3>Befristung</h3>
+  <ul class="actions">
+    <li>
+      <a (click)="neu.emit(); $event.stopPropagation()">
+        Neue Befristung
+      </a>
+    </li>
+    <li>
+      <a (click)="anzeigen.emit(); $event.stopPropagation()">
+        Befristete Mitarbeiter anzeigen
+      </a>
+    </li>
+  </ul>
+</div>

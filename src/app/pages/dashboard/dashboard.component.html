@@ -1,0 +1,126 @@
+<div
+  class="dashboard-grid"
+  [class.expanded-grid]="isExpanded"
+>
+  <!-- große zentrale Kachel -->
+  <div
+    class="analytics"
+    id="analyticsTile"
+    [class.expanded]="isExpanded"
+  >
+    <!-- Pseudo-Fullscreen-Button nur bei echter Tabelle -->
+    <button
+      *ngIf="aktuelleTabelle"
+      class="fullscreen-btn"
+      (click)="toggleExpand()"
+    >
+      {{ isExpanded ? '⤡' : '⤢' }}
+    </button>
+
+    <!-- Content-Bereich: nur scrollbar, wenn echte Tabelle -->
+    <div
+      class="analytics-content"
+      [class.scrollable]="!!aktuelleTabelle"
+    >
+      <app-dashboard-analytics
+        [inhalt]="aktuelleTabelle"
+      ></app-dashboard-analytics>
+    </div>
+  </div>
+
+  <!-- rechte Spalte oben: Mitarbeiter -->
+  <div class="mitarbeiter">
+    <app-mitarbeiter-vorschau
+      (listeAnzeigen)="openList()"
+      [class.disabled-tile]="showListModal || showKapForm"
+    ></app-mitarbeiter-vorschau>
+  </div>
+
+  <!-- untere Leiste: Vorschau-Kacheln -->
+  <div class="bottom">
+    <app-kapazitaetsabweichung-vorschau
+      (neu)="openKapForm()"
+      (anzeigen)="zeige('kapazitaet')"
+      (forecast)="zeige('monate')">
+    ></app-kapazitaetsabweichung-vorschau>
+
+    <app-atz-vorschau
+      (neu)="openAtzForm()"
+      (anzeigen)="zeige('atz')"
+      [class.disabled-tile]="showListModal || showKapForm || showAtzForm">
+    </app-atz-vorschau>
+
+    <app-befristung-vorschau
+      (neu)="openBefForm()"
+      (anzeigen)="zeige('befristet')"
+      [class.disabled-tile]="showListModal||showKapForm||showAtzForm||showBefForm">
+    </app-befristung-vorschau>
+
+    <app-austritte-vorschau
+      (neu)="openAustForm()"
+      (anzeigen)="zeige('austritte')"
+      [class.disabled-tile]="showListModal||showKapForm||showAtzForm||showBefForm||showAustForm">
+    </app-austritte-vorschau>
+
+    <app-fluktuation-vorschau
+      (anzeigen)="zeige('fluktuation')"
+    ></app-fluktuation-vorschau>
+
+    <app-personalentwicklung-vorschau
+      (anzeigen)="zeige('personalentwicklung')"
+    ></app-personalentwicklung-vorschau>
+
+  </div>
+</div>
+
+<!-- Modal: Mitarbeiter-Liste -->
+<div class="modal-overlay" *ngIf="showListModal">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeList()">✕</button>
+    <app-mitarbeiter-liste></app-mitarbeiter-liste>
+  </div>
+</div>
+
+<!-- Modal: Kapazitätsabweichung hinzufügen -->
+<div class="modal-overlay" *ngIf="showKapForm">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeKapForm()">✕</button>
+    <app-kapazitaetsabweichung-formular
+      (speichern)="onSaveKap($event)"
+      (abbrechen)="closeKapForm()"
+    ></app-kapazitaetsabweichung-formular>
+  </div>
+</div>
+
+<!-- Altersteilzeit-Modal -->
+<div class="modal-overlay" *ngIf="showAtzForm">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeAtzForm()">✕</button>
+    <app-atz-formular
+      (speichern)="onSaveAtz($event)"
+      (abbrechen)="closeAtzForm()">
+    </app-atz-formular>
+  </div>
+</div>
+
+<!-- Modal für Befristung -->
+<div class="modal-overlay" *ngIf="showBefForm">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeBefForm()">✕</button>
+    <app-befristung-formular
+      (speichern)="onSaveBef($event)"
+      (abbrechen)="closeBefForm()">
+    </app-befristung-formular>
+  </div>
+</div>
+
+<!-- Neuer Austritt -->
+<div class="modal-overlay" *ngIf="showAustForm">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeAustForm()">✕</button>
+    <app-austritt-formular
+      (speichern)="onSaveAust($event)"
+      (abbrechen)="closeAustForm()">
+    </app-austritt-formular>
+  </div>
+</div>

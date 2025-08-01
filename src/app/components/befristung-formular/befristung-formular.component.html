@@ -1,0 +1,36 @@
+<div class="form-title">
+    <h2>Neue Befristung anlegen</h2>
+</div>
+
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>Mitarbeiter auswählen</mat-label>
+  <input
+    matInput
+    [formControl]="mitarbeiterCtrl"
+    [matAutocomplete]="auto"
+    required />
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngFor="let m of gefilterteMitarbeiter | async" [value]="m">
+      {{ m.vorname }} {{ m.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<div class="feld">
+  <label for="enddatum">Befristungsdatum</label>
+  <input
+    id="enddatum"
+    name="enddatum"
+    type="date"
+    [(ngModel)]="data.enddatum"
+    required />
+</div>
+
+<div class="form-actions">
+  <button type="submit" class="btn-primary" (click)="onSubmit()">
+    Speichern
+  </button>
+  <button type="button" class="btn-secondary" (click)="abbrechen.emit()">
+    Abbrechen
+  </button>
+</div>

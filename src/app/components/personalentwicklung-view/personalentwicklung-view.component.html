@@ -1,0 +1,66 @@
+<div class="pe-table-container">
+  <table class="pe-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th *ngFor="let monat of monate">{{ monat }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- DIREKTE -->
+      <tr class="pe-group"><td colspan="13">DIREKTE</td></tr>
+      <tr><td>IST Stamm Köpfe</td>      <td *ngFor="let v of data.direktStammKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td><td *ngFor="let v of data.direktStammFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr><td>IST Befristete Köpfe</td> <td *ngFor="let v of data.direktBefrKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td><td *ngFor="let v of data.direktBefrFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr><td>FA / Überbrücker Köpfe</td> <td *ngFor="let v of data.direktUeberKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td><td *ngFor="let v of data.direktUeberFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr class="pe-sum-row"><td><b>IST Direkt Köpfe</b></td> <td *ngFor="let v of data.direktSumKopf"><b>{{ v }}</b></td></tr>
+      <tr class="pe-sum-row"><td class="fte-label"><b>FTE</b></td><td *ngFor="let v of data.direktSumFte"><b>{{ v | number:'1.2-2' }}</b></td></tr>
+      <!-- INDIREKTE -->
+      <tr class="pe-group"><td colspan="13">INDIREKTE</td></tr>
+      <tr class="pe-sub"><td colspan="13">mengenunabhängig</td></tr>
+      <tr><td>IST Stamm Köpfe</td><td *ngFor="let v of data.indirektMuStammKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td><td *ngFor="let v of data.indirektMuStammFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr><td>IST Befristete Köpfe</td><td *ngFor="let v of data.indirektMuBefrKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td><td *ngFor="let v of data.indirektMuBefrFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr class="pe-sum-row"><td><b>IST Indirekte Köpfe</b></td><td *ngFor="let v of data.indirektMuSumKopf"><b>{{ v }}</b></td></tr>
+      <tr class="pe-sum-row"><td class="fte-label"><b>FTE</b></td><td *ngFor="let v of data.indirektMuSumFte"><b>{{ v | number:'1.2-2' }}</b></td></tr>
+      <tr class="pe-sub"><td colspan="13">mengenabhängig</td></tr>
+      <tr><td>IST Stamm Köpfe</td><td *ngFor="let v of data.indirektMaStammKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td><td *ngFor="let v of data.indirektMaStammFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr><td>IST Befristete Köpfe</td><td *ngFor="let v of data.indirektMaBefrKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td><td *ngFor="let v of data.indirektMaBefrFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr class="pe-sum-row"><td><b>IST Indirekte Köpfe</b></td><td *ngFor="let v of data.indirektMaSumKopf"><b>{{ v }}</b></td></tr>
+      <tr class="pe-sum-row"><td class="fte-label"><b>FTE</b></td><td *ngFor="let v of data.indirektMaSumFte"><b>{{ v | number:'1.2-2' }}</b></td></tr>
+      <tr class="pe-sum-row"><td><b>IST Indirekte gesamt Köpfe</b></td><td *ngFor="let v of data.indirektGesKopf"><b>{{ v }}</b></td></tr>
+      <tr class="pe-sum-row"><td class="fte-label"><b>FTE</b></td><td *ngFor="let v of data.indirektGesFte"><b>{{ v | number:'1.2-2' }}</b></td></tr>
+      <!-- GESAMT OHNE AZUBIS -->
+      <tr class="pe-group"><td colspan="13">GESAMT OHNE AUSZUBILDENDE</td></tr>
+      <tr><td>IST Stamm Köpfe</td>         <td *ngFor="let v of data.gesStammKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td>   <td *ngFor="let v of data.gesStammFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr><td>IST Befristete exkl. Überbrück Köpfe</td> <td *ngFor="let v of data.gesBefrUeberKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td>   <td *ngFor="let v of data.gesBefrUeberFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr class="pe-sum-row"><td><b>IST Gesamt ohne Azubi Köpfe</b></td><td *ngFor="let v of data.gesSumKopf"><b>{{ v }}</b></td></tr>
+      <tr class="pe-sum-row"><td class="fte-label"><b>FTE</b></td><td *ngFor="let v of data.gesSumFte"><b>{{ v | number:'1.2-2' }}</b></td></tr>
+      <!-- SONSTIGE BELEG. -->
+      <tr class="pe-group"><td colspan="13">SONSTIGE BELEGCHAFT</td></tr>
+      <tr><td>IST Azubis Köpfe</td>        <td *ngFor="let v of data.azubiKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td>   <td *ngFor="let v of data.azubiFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr><td>Stamm inkl. Azubis Köpfe</td><td *ngFor="let v of data.stammInklAzubiKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td>   <td *ngFor="let v of data.stammInklAzubiFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr><td>Befristete inkl. Überbrücker Köpfe</td><td *ngFor="let v of data.befrInklUeberKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td>   <td *ngFor="let v of data.befrInklUeberFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr><td>Inaktive Köpfe</td>          <td *ngFor="let v of data.inaktiveKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td>   <td *ngFor="let v of data.inaktiveFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr><td>Studentische Mitarbeiter Köpfe</td> <td *ngFor="let v of data.studMitKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td>   <td *ngFor="let v of data.studMitFte">{{ v | number:'1.2-2' }}</td></tr>
+      <tr><td>ATZ Freistellung Köpfe</td>  <td *ngFor="let v of data.atzFreistKopf">{{ v }}</td></tr>
+      <tr><td class="fte-label">FTE</td>   <td *ngFor="let v of data.atzFreistFte">{{ v | number:'1.2-2' }}</td></tr>
+      <!-- IST GESAMT -->
+      <tr class="pe-group"><td colspan="13">IST Gesamt</td></tr>
+      <tr class="pe-sum-row"><td><b>Köpfe</b></td> <td *ngFor="let v of data.gesamtKopf"><b>{{ v }}</b></td></tr>
+      <tr class="pe-sum-row"><td class="fte-label"><b>FTE</b></td><td *ngFor="let v of data.gesamtFte"><b>{{ v | number:'1.2-2' }}</b></td></tr>
+    </tbody>
+  </table>
+</div>

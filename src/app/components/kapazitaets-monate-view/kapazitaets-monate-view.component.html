@@ -1,0 +1,73 @@
+<!-- Filter-Panel -->
+<div class="forecast-filters">
+  <label>
+    Bereich:
+    <select [(ngModel)]="bereichFilter" (ngModelChange)="updateFiltered()">
+      <option value="all">Alle</option>
+      <option *ngFor="let b of bereicheEnum" [value]="b">{{ b }}</option>
+    </select>
+  </label>
+  <label>
+    Abteilung:
+    <select [(ngModel)]="deptFilter" (ngModelChange)="updateFiltered()">
+      <option value="">Alle</option>
+      <option *ngFor="let abt of abteilungen" [value]="abt">{{ abt }}</option>
+    </select>
+  </label>
+</div>
+
+<div class="forecast-container">
+  <table class="forecast-table">
+    <thead>
+      <tr>
+        <th class="sticky-col left" rowspan="2">Mitarbeiter</th>
+        <th class="sticky-col" rowspan="2">FTE</th>
+        <th colspan="24" class="months-header">Kapazität pro Monat</th>
+      </tr>
+      <tr>
+        <ng-container *ngFor="let monat of months">
+          <th>{{ monat }}</th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let group of filteredGroups">
+        <!-- Abteilungs-Überschrift -->
+        <tr class="abteilung-row">
+          <td class="abteilung-title" colspan="26">
+            {{ group.abteilung }}
+          </td>
+        </tr>
+        <!-- Mitarbeiter-Zeilen -->
+        <tr *ngFor="let row of group.rows; let i = index"
+            [class.zebra]="i % 2 === 1">
+          <td class="sticky-col left">
+            {{ row.mitarbeiter.vorname }} {{ row.mitarbeiter.name }}
+          </td>
+          <td class="sticky-col">
+            {{ row.mitarbeiter.fte | number:'1.2-2' }}
+          </td>
+          <ng-container *ngFor="let fte of row.ftes">
+            <td>{{ fte | number:'1.2-2' }}</td>
+          </ng-container>
+        </tr>
+        <!-- Summen-Zeile: FTE pro Monat -->
+        <tr class="sum-row">
+          <td class="sticky-col left">Summe FTE</td>
+          <td class="sticky-col"></td>
+          <ng-container *ngFor="let sum of group.sumFte">
+            <td>{{ sum | number:'1.2-2' }}</td>
+          </ng-container>
+        </tr>
+        <!-- Köpfe pro Monat -->
+        <tr class="heads-row">
+          <td class="sticky-col left">Köpfe</td>
+          <td class="sticky-col"></td>
+          <ng-container *ngFor="let h of group.headsPerMonth">
+            <td>{{ h }}</td>
+          </ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

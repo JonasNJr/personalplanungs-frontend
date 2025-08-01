@@ -1,0 +1,7 @@
+<div class="card vorschau" (click)="$event.stopPropagation()">
+  <h3>Austritte</h3>
+  <ul class="actions">
+    <li><a (click)="neu.emit(); $event.stopPropagation()">Neuer Austritt</a></li>
+    <li><a (click)="anzeigen.emit(); $event.stopPropagation()">Austritte anzeigen</a></li>
+  </ul>
+</div>

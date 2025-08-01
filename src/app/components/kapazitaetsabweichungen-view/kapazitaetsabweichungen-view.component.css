@@ -1,0 +1,60 @@
+/* gesamter View in Flex, damit Wrapper scrollt */
+.view-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Filterzeile */
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Inputs und Buttons etwas gepolstert */
+.filters input,
+.filters select,
+.filters button {
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Wrapper sorgt für vertikales Scrollen */
+.table-wrapper {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+/* Tabelle füllt Breite, klare Ränder */
+.abweichungen-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Kopf- und Fußzeile */
+.abweichungen-table th,
+.abweichungen-table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+}
+
+.abweichungen-table th {
+  background-color: #f9f9f9;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* „Keine Daten“-Zeile */
+.no-data {
+  text-align: center;
+  font-style: italic;
+  padding: 1rem;
+  color: #666;
+}
+

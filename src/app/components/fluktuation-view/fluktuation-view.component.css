@@ -1,0 +1,15 @@
+.fluktuation-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.fluktuation-table th, .fluktuation-table td {
+  border: 1px solid #eee;
+  padding: 0.4em 1em;
+  text-align: right;
+}
+.fluktuation-table th {
+  background: #fafafa;
+}
+.fluktuation-controls {
+  margin-bottom: 1em;
+}

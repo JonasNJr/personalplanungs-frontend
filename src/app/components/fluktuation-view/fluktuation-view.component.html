@@ -1,0 +1,32 @@
+<div class="fluktuation-controls">
+  <label>
+    Jahr:
+    <select [(ngModel)]="jahr" (change)="loadData(jahr)">
+      <option *ngFor="let y of jahre">{{ y }}</option>
+    </select>
+
+  </label>
+</div>
+<table class="fluktuation-table">
+  <thead>
+    <tr>
+      <th>Monat</th>
+      <th>AG Kündigungen</th>
+      <th>AN Kündigungen</th>
+      <th>Sonst. Auflösung</th>
+      <th>Ges. MA</th>
+      <th>Fluktuation %</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of stats; let i = index">
+        <td>{{ monate[i] }}</td>
+        <td>{{ d.agK }}</td>
+        <td>{{ d.anK }}</td>
+        <td>{{ d.sonst }}</td>
+        <td>{{ d.gesMA }}</td>
+        <td>{{ d.fluktuation | number:'1.2-2' }}%</td>
+    </tr>
+
+  </tbody>
+</table>

@@ -1,0 +1,74 @@
+.card {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Überschrift */
+.card h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.6rem;
+  border-bottom: 2px solid #f57c00;
+  padding-bottom: 0.28rem;
+  letter-spacing: 0.02em;
+}
+
+/* Scrollbare Liste */
+.card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 3px;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  max-height: 54vh; /* Höhe für viele MA, anpassbar */
+  min-height: 2rem;
+  scrollbar-width: thin;
+  scrollbar-color: #f57c00 #f3f3f3;
+}
+.card ul::-webkit-scrollbar {
+  width: 8px;
+}
+.card ul::-webkit-scrollbar-thumb {
+  background: #f57c00;
+  border-radius: 4px;
+}
+.card ul::-webkit-scrollbar-track {
+  background: #faf9f7;
+}
+
+.card li {
+  font-size: 1.06rem;
+  margin-bottom: 0.19rem;
+  padding: 0.07rem 0.18rem;
+  border-radius: 4px;
+  transition: background 0.13s;
+}
+.card li:hover {
+  background: #fff6ed;
+}
+
+/* Link-Styling: Nur beim Link ist der Cursor pointer und Unterstrich beim Hover */
+.card a {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  align-self: flex-start;
+  font-size: 1rem;
+  margin-top: 0.7rem;
+  border-bottom: 1.5px solid transparent;
+  transition: border-bottom 0.12s;
+}
+.card a:hover {
+  border-bottom: 1.5px solid #007bff;
+  text-decoration: underline;
+  color: #0056b3;
+}

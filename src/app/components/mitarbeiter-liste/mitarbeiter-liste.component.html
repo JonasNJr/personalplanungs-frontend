@@ -1,0 +1,60 @@
+<div class="mitarbeiter-container">
+
+    <ng-container *ngIf="zeigeFormular; else zeigeDetailOderTabelle">
+      <app-mitarbeiter-formular
+        [daten]="bearbeiteterMitarbeiter"
+        [editMode]="!!bearbeiteterMitarbeiter"
+        (speichern)="speichernMitarbeiter($event)"
+        (abbrechen)="abbrechen()">
+      </app-mitarbeiter-formular>
+    </ng-container>
+  
+    <ng-template #zeigeDetailOderTabelle>
+      <ng-container *ngIf="zeigeDetail; else tabelle">
+  
+        <app-mitarbeiter-detail
+          [daten]="ausgewaehlterMitarbeiter!"
+          (zurueck)="zurueckZurListe()"
+          (bearbeiten)="bearbeite($event)">
+        </app-mitarbeiter-detail>
+  
+      </ng-container>
+  
+      <ng-template #tabelle>
+        <h2>Mitarbeiterverwaltung</h2>
+  
+        <div class="actions">
+          <button class="btn-neu" (click)="neuerMitarbeiter()">+ Neuer Mitarbeiter</button>
+        </div>
+  
+        <table class="mitarbeiter-tabelle">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Vorname</th>
+              <th>Name</th>
+              <th>Funktion</th>
+              <th>Eintritt</th>
+              <th>FTE</th>
+              <th>Aktionen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let m of mitarbeiter" (click)="mitarbeiterAngeklickt(m)">
+              <td>{{ m.id }}</td>
+              <td>{{ m.vorname }}</td>
+              <td>{{ m.name }}</td>
+              <td>{{ m.funktion }}</td>
+              <td>{{ m.eintrittsdatum | date:'dd.MM.yyyy' }}</td>
+              <td>{{ m.fte }}</td>
+              <td>
+                <button class="btn-bearbeiten" (click)="bearbeite(m); $event.stopPropagation()">Bearbeiten</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ng-template>
+  
+  </div>
+  

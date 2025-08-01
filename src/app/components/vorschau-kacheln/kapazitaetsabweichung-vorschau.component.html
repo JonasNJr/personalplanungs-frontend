@@ -1,0 +1,8 @@
+<div class="card vorschau" (click)="$event.stopPropagation()">
+      <h3>Kapazitätsabweichungen</h3>
+      <ul class="actions">
+        <li><a (click)="neu.emit(); $event.stopPropagation()">Neue Abweichung</a></li>
+        <li><a (click)="anzeigen.emit(); $event.stopPropagation()">Bestehende anzeigen</a></li>
+        <li><a (click)="forecast.emit(); $event.stopPropagation()">24-Monate-Forecast</a></li>
+      </ul>
+    </div>

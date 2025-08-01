@@ -1,0 +1,51 @@
+<div class="view-container">
+  <!-- Filterleiste -->
+  <div class="filters">
+    <input type="text" placeholder="Name filtern…" [(ngModel)]="filterName" />
+    <select [(ngModel)]="filterAbteilung">
+      <option value="">Alle Abteilungen</option>
+      <option *ngFor="let abt of abteilungen" [value]="abt">{{ abt }}</option>
+    </select>
+    <button (click)="onFilter()">Anwenden</button>
+  </div>
+
+  <!-- Tabelle -->
+  <table class="mitarbeiter-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Abteilung</th>
+        <th>Austrittsdatum</th>
+        <th>Austrittsart</th>
+        <th>Aktionen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of mitarbeiter">
+        <td>{{ m.vorname }} {{ m.name }}</td>
+        <td>{{ m.abteilung }}</td>
+        <td>{{ m.kuendigung | date:'dd.MM.yyyy' }}</td>
+        <td>{{ m.austritt }}</td>
+        <td class="actions-cell">
+          <button (click)="onEdit(m)">✎</button>
+          <button (click)="onDelete(m.id)">🗑</button>
+        </td>
+      </tr>
+      <tr *ngIf="mitarbeiter.length===0">
+        <td colspan="5" class="no-data">Keine Austritte gefunden.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal / Bearbeiten -->
+  <div class="modal-overlay" *ngIf="editing">
+    <div class="modal-content">
+      <button class="close-btn" (click)="onCancelEdit()">✕</button>
+      <app-austritt-formular
+        [data]="editing"
+        (speichern)="onSaveEdit($event)"
+        (abbrechen)="onCancelEdit()">
+      </app-austritt-formular>
+    </div>
+  </div>
+</div>

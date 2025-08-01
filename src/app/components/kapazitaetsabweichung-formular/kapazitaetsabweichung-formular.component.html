@@ -1,0 +1,73 @@
+<div class="form-title">
+    <h2>Neue Kapazitätsabweichung anlegen</h2>
+</div>
+
+<form (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline" class="full-width">
+  <mat-label>Mitarbeiter auswählen</mat-label>
+  <input type="text"
+         matInput
+         [formControl]="mitarbeiterCtrl"
+         [matAutocomplete]="auto"
+         required>
+       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let mit of gefilterteMitarbeiter | async" [value]="mit">
+         {{ mit.vorname }} {{ mit.name }} <span style="color:#888;font-size:0.9em;">({{mit.funktion}})</span>
+        </mat-option>
+      </mat-autocomplete>
+      </mat-form-field>
+
+  <div class="feld-group">
+    <div class="feld">
+      <label for="start">Startdatum</label>
+      <input
+        id="start"
+        name="start"
+        type="date"
+        [(ngModel)]="data.start"
+        required
+      />
+    </div>
+    <div class="feld">
+      <label for="ende">Enddatum</label>
+      <input
+        id="ende"
+        name="ende"
+        type="date"
+        [(ngModel)]="data.ende"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="feld">
+    <label for="kapazitaet">Neue Kapazität</label>
+    <input
+      id="kapazitaet"
+      name="kapazitaet"
+      type="number"
+      step="0.1"
+      [(ngModel)]="data.kapazitaet"
+      required
+    />
+  </div>
+
+  <div class="feld">
+    <label for="bemerkung">Bemerkung</label>
+    <textarea
+      id="bemerkung"
+      name="bemerkung"
+      rows="3"
+      [(ngModel)]="data.bemerkung"
+    ></textarea>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn-primary">Speichern</button>
+    <button type="button" class="btn-secondary" (click)="abbrechen.emit()">
+      Abbrechen
+    </button>
+  </div>
+</form>
+
+

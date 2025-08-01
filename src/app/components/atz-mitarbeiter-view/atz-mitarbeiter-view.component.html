@@ -1,0 +1,43 @@
+<div class="view-container">
+  <!-- 1. Filterzeile -->
+  <div class="filters">
+    <input
+      type="text"
+      placeholder="Name filtern…"
+      [(ngModel)]="filterName" />
+
+    <select [(ngModel)]="filterAbteilung">
+      <option value="">Alle Abteilungen</option>
+      <option *ngFor="let abt of abteilungen" [value]="abt">
+        {{ abt }}
+      </option>
+    </select>
+
+    <button (click)="onFilter()">Anwenden</button>
+  </div>
+
+  <!-- 2. Tabelle der ATZ-Mitarbeiter -->
+  <table class="mitarbeiter-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Abteilung</th>
+        <th>Aktuelle Kapazität</th>
+        <th>Austrittsdatum</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of mitarbeiter">
+        <td>{{ m.vorname }} {{ m.name }}</td>
+        <td>{{ m.abteilung }}</td>
+        <td>{{ m.fte | number:'1.2-2' }}</td>
+        <td>{{ m.kuendigung | date:'dd.MM.yyyy' }}</td>
+      </tr>
+      <tr *ngIf="mitarbeiter.length === 0">
+        <td colspan="4" class="no-data">
+          Keine Altersteilzeit-Mitarbeiter gefunden.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,15 @@
+<div class="card vorschau" (click)="$event.stopPropagation()">
+  <h3>Altersteilzeit</h3>
+  <ul class="actions">
+    <li>
+      <a (click)="neu.emit(); $event.stopPropagation()">
+        Neue Altersteilzeit
+      </a>
+    </li>
+    <li>
+      <a (click)="anzeigen.emit(); $event.stopPropagation()">
+        ATZ-Mitarbeiter anzeigen
+      </a>
+    </li>
+  </ul>
+</div>

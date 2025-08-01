@@ -1,0 +1,121 @@
+/* ==================================================
+   Layout der Analytics-Seite
+   ================================================== */
+
+/* Haupt-Container: zwei Spalten, Grid- oder Flex-Verhalten */
+.analytics-layout {
+  display: flex;
+  gap: 40px;
+  height: 100%;          /* volle Höhe des Parent-Containers */
+  flex-wrap: wrap;       /* Zeilenumbruch, wenn der Platz nicht reicht */
+  justify-content: space-between;
+}
+
+/* Einzelne Chart-Block-Karten (falls verwendet) */
+.chart-block {
+  flex: 1 1 45%;         /* wächst und schrumpft, Basisweite 45% */
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-block h3 {
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Standard-Canvas in Charts: volle Breite, max. Höhe 300px */
+canvas {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 300px;
+}
+
+/* Nachrichten-/Log-Bereich unter den Charts */
+.messages {
+  width: 100%;
+  margin-top: 30px;
+  padding-top: 12px;
+  border-top: 1px solid #ddd;
+}
+
+.messages h4 {
+  margin-bottom: 8px;
+  margin-top: 0;
+  font-size: 16px;
+  color: #444;
+}
+
+.messages ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.messages li {
+  margin-bottom: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ==================================================
+   Card-Styling für die zentrale Analytics-Kachel
+   ================================================== */
+
+.analytics-card {
+  /* Rahmen und Schatten der Karte */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  height: 100%;                     /* volle Höhe der Grid-Zelle */
+  transition: transform .2s, box-shadow .2s;
+}
+
+/* ==================================================
+   Platzhalter-Modus (wenn keine Tabelle ausgewählt ist)
+   ================================================== */
+
+/* Aktiviert, wenn "placeholder-active" auf .analytics-card gesetzt wird */
+.analytics-card.placeholder-active {
+  display: flex;                    /* macht die Karte zum Flex-Container */
+  align-items: center;              /* vertikale Zentrierung */
+  justify-content: center;          /* horizontale Zentrierung */
+
+  /* Schatten und Rahmen ausschalten */
+  box-shadow: none !important;
+  border: none !important;
+
+  /* Cursor-Änderungen deaktivieren */
+  cursor: default !important;
+}
+
+/* Unterdrückt jeglichen Hover-Effekt im Platzhalter-Zustand */
+.analytics-card.placeholder-active:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Bild in der Platzhalter-Kachel darf nicht klickbar sein */
+.analytics-card.placeholder-active .placeholder-image {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Falls noch eine zusätzliche .placeholder-Klasse verwendet wird,
+   behält sie die Flex-Zentrierung bei */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Bildgröße einschränken, damit es innerhalb der Karte bleibt */
+.placeholder-image {
+  max-width: 60%;
+  max-height: 60%;
+  object-fit: contain;
+}

@@ -1,0 +1,51 @@
+<!-- src/app/components/befristung-mitarbeiter-view/befristung-mitarbeiter-view.component.html -->
+<div class="view-container">
+  <!-- Filterleiste wie gehabt -->
+  <div class="filters">
+    <input type="text" placeholder="Name filtern…" [(ngModel)]="filterName" />
+    <select [(ngModel)]="filterAbteilung">
+      <option value="">Alle Abteilungen</option>
+      <option *ngFor="let abt of abteilungen" [value]="abt">{{ abt }}</option>
+    </select>
+    <button (click)="onFilter()">Anwenden</button>
+  </div>
+
+  <!-- Tabelle -->
+  <table class="mitarbeiter-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Abteilung</th>
+        <th>Befristungsdatum</th>
+        <th>Aktionen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of mitarbeiter">
+        <td>{{ m.vorname }} {{ m.name }}</td>
+        <td>{{ m.abteilung }}</td>
+        <td>{{ m.befristung | date:'dd.MM.yyyy' }}</td>
+        <td class="actions-cell">
+          <button (click)="onEdit(m)">✎</button>
+          <button (click)="onDelete(m.id)">🗑</button>
+        </td>
+      </tr>
+      <tr *ngIf="mitarbeiter.length === 0">
+        <td colspan="4" class="no-data">Keine befristeten Mitarbeiter gefunden.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal für Bearbeiten -->
+<div class="modal-overlay" *ngIf="editing">
+  <div class="modal-content">
+    <button class="close-btn" (click)="onCancelEdit()">✕</button>
+    <app-befristung-formular
+      [data]="editing"
+      (speichern)="onSaveEdit($event)"
+      (abbrechen)="onCancelEdit()">
+    </app-befristung-formular>
+  </div>
+</div>
+
+</div>

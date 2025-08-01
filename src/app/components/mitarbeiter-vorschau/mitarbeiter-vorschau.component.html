@@ -1,0 +1,9 @@
+<div class="card">
+  <h3>Mitarbeiterverwaltung</h3>
+  <ul>
+    <li *ngFor="let m of mitarbeiterListe">
+      {{ m.vorname }} {{ m.name }} - {{ m.funktion }}
+    </li>
+  </ul>
+  <a (click)="listeAnzeigen.emit()">Zur vollständigen Liste</a>
+</div>

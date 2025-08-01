@@ -1,0 +1,105 @@
+<div class="form-title">
+    <h2>{{ editMode ? 'Mitarbeiter bearbeiten' : 'Neuen Mitarbeiter anlegen' }}</h2>
+</div>
+
+<form (ngSubmit)="onSubmit()">
+    <label>Vorname:
+      <input [(ngModel)]="neuerMitarbeiter.vorname" name="vorname" required />
+    </label>
+  
+    <label>Nachname:
+      <input [(ngModel)]="neuerMitarbeiter.name" name="name" required />
+    </label>
+  
+    <label>Funktion:
+      <input [(ngModel)]="neuerMitarbeiter.funktion" name="funktion" />
+    </label>
+  
+    <label>Eintrittsdatum:
+      <input type="date" [(ngModel)]="neuerMitarbeiter.eintrittsdatum" name="eintrittsdatum" />
+    </label>
+  
+    <label>FTE:
+      <input type="number" step="0.01" [(ngModel)]="neuerMitarbeiter.fte" name="fte" />
+    </label>
+  
+     <label>Kostenstelle:
+      <input
+        list="kostenstellen"
+        name="kostenstelle"
+        [(ngModel)]="neuerMitarbeiter.kostenstelle"
+        (ngModelChange)="onKostenstelleChange($event)"
+        required
+     />
+      <datalist id="kostenstellen">
+      <!-- Variante A: Interpolation -->
+         <option *ngFor="let cc of costCenterList" value="{{ cc }}"></option>
+      </datalist>
+
+    </label>
+
+
+      <label>Bereichsnummer:
+       <input
+         name="bereichsnummer"
+          [(ngModel)]="neuerMitarbeiter.bereichsnummer"
+          readonly
+       />
+      </label>
+
+      <label>Abteilung:
+        <input
+         name="abteilung"
+          [(ngModel)]="neuerMitarbeiter.abteilung"
+          readonly
+       />
+      </label>
+    
+    <label>Arbeitsverhältnis:
+      <select [(ngModel)]="neuerMitarbeiter.arbeitsverhaeltnis" name="arbeitsverhaeltnis">
+        <option *ngFor="let option of arbeitsverhaeltnisse" [value]="option">{{ option }}</option>
+      </select>
+    </label>
+  
+    <label>Bereich:
+      <select [(ngModel)]="neuerMitarbeiter.bereich" name="bereich">
+        <option *ngFor="let b of bereiche" [value]="b">{{ b }}</option>
+      </select>
+    </label>
+  
+    <label>Mengenabhängigkeit:
+      <select [(ngModel)]="neuerMitarbeiter.mengenabhaengigkeit" name="mengenabhaengigkeit">
+        <option *ngFor="let m of mengenoptionen" [value]="m">{{ m }}</option>
+      </select>
+    </label>
+  
+    <label>Austrittsart:
+      <select [(ngModel)]="neuerMitarbeiter.austritt" name="austritt">
+        <option *ngFor="let a of austrittsarten" [value]="a">{{ a }}</option>
+      </select>
+    </label>
+  
+    <label>Kündigung:
+      <input type="date" [(ngModel)]="neuerMitarbeiter.kuendigung" name="kuendigung" />
+    </label>
+  
+    <label>Befristung:
+      <input type="date" [(ngModel)]="neuerMitarbeiter.befristung" name="befristung" />
+    </label>
+  
+    <label>Freistellung:
+      <input type="date" [(ngModel)]="neuerMitarbeiter.freistellung" name="freistellung" />
+    </label>
+  
+    <label>Bemerkung:
+      <textarea [(ngModel)]="neuerMitarbeiter.bemerkung" name="bemerkung"></textarea>
+    </label>
+  
+    <div class="form-buttons">
+        <button type="submit">
+            {{ editMode ? 'Aktualisieren' : 'Speichern' }}
+        </button>          
+      <button type="button" (click)="onAbbrechen()">Abbrechen</button>
+    </div>
+  </form>
+  

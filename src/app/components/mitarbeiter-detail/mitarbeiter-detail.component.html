@@ -1,0 +1,30 @@
+<div class="detail-container">
+    <div class="detail-header">
+      <button class="btn-zurueck" (click)="zurueck.emit()">← Zurück</button>
+      <button class="btn-schliessen" (click)="zurueck.emit()">✕</button>
+    </div>
+  
+    <h2>{{ daten.vorname }} {{ daten.name }}</h2>
+  
+    <div class="detail-grid">
+      <div><strong>Funktion:</strong> {{ daten.funktion }}</div>
+      <div><strong>Eintritt:</strong> {{ daten.eintrittsdatum | date:'dd.MM.yyyy' }}</div>
+      <div><strong>FTE:</strong> {{ daten.fte }}</div>
+      <div><strong>Kostenstelle:</strong> {{ daten.kostenstelle }}</div>
+      <div class="detail-row"><strong>Abteilung:</strong> {{ daten.abteilung }}</div>
+      <div class="detail-row"><strong>Bereichs-Nr.:</strong> {{ daten.bereichsnummer }}</div>
+      <div><strong>Bereich:</strong> {{ daten.bereich }}</div>
+      <div><strong>Mengenabhängigkeit:</strong> {{ daten.mengenabhaengigkeit }}</div>
+      <div><strong>Arbeitsverhältnis:</strong> {{ daten.arbeitsverhaeltnis }}</div>
+      <div><strong>Austrittsart:</strong> {{ daten.austritt }}</div>
+      <div><strong>Kündigung:</strong> {{ daten.kuendigung || '-' }}</div>
+      <div><strong>Befristung:</strong> {{ daten.befristung || '-' }}</div>
+      <div><strong>Freistellung:</strong> {{ daten.freistellung || '-' }}</div>
+      <div class="bemerkung"><strong>Bemerkung:</strong><br />{{ daten.bemerkung }}</div>
+    </div>
+  
+    <div class="actions">
+      <button (click)="bearbeiten.emit(daten)">Bearbeiten</button>
+    </div>
+  </div>
+  

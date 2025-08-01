@@ -1,0 +1,53 @@
+<!-- src/app/components/atz-formular/atz-formular.component.html -->
+<form (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Mitarbeiter auswählen</mat-label>
+    <input
+      matInput
+      [formControl]="mitarbeiterCtrl"
+      [matAutocomplete]="auto"
+      required />
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let m of gefilterteMitarbeiter | async" [value]="m">
+        {{ m.vorname }} {{ m.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <div class="feld-group">
+    <div class="feld">
+      <label for="start">Startdatum</label>
+      <input
+        id="start"
+        name="startdatum"
+        type="date"
+        [(ngModel)]="data.startdatum"
+        required />
+    </div>
+    <div class="feld">
+      <label for="ende">Enddatum</label>
+      <input
+        id="ende"
+        name="enddatum"
+        type="date"
+        [(ngModel)]="data.enddatum"
+        required />
+    </div>
+  </div>
+
+  <div class="feld">
+    <label for="kapazitaet">Neue Kapazität</label>
+    <input
+      id="kapazitaet"
+      name="neueKapazitaet"
+      type="number"
+      step="0.1"
+      [(ngModel)]="data.neueKapazitaet"
+      required />
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn-primary">Speichern</button>
+    <button type="button" class="btn-secondary" (click)="abbrechen.emit()">Abbrechen</button>
+  </div>
+</form>
